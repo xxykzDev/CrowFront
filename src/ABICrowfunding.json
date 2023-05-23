@@ -277,8 +277,45 @@
       },
       {
         "internalType": "string",
-        "name": "_description",
+        "name": "_shortDescription",
         "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_longDescription",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_estimatedRevenue",
+        "type": "string"
+      },
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "state",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "city",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "proposalAddress",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct Crowdfunding.Location",
+        "name": "_location",
+        "type": "tuple"
       },
       {
         "internalType": "uint256",
@@ -326,7 +363,17 @@
       },
       {
         "internalType": "string",
-        "name": "description",
+        "name": "shortDescription",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "longDescription",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "estimatedRevenue",
         "type": "string"
       },
       {
@@ -348,27 +395,36 @@
         "internalType": "bool",
         "name": "funded",
         "type": "bool"
+      },
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "state",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "city",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "proposalAddress",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct Crowdfunding.Location",
+        "name": "location",
+        "type": "tuple"
       }
     ],
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_proposal",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "_contributor",
-        "type": "address"
-      }
-    ],
-    "name": "refund",
-    "outputs": [],
-    "stateMutability": "nonpayable",
     "type": "function"
   },
   {

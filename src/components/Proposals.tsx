@@ -9,10 +9,8 @@ function ContractInteraction() {
   const [activeProposals, setActiveProposals] = useState<any[] | null>(null);
   const [inactiveProposals, setInactiveProposals] = useState<any[] | null>(null);
 
-  
-
   useEffect(() => {
-    const contractAddress = '0x88739Fc56b48948f5413752fE25aC312707e5B92';
+    const contractAddress = '0x01b7D00193be70946810aB6065e372C2533eb5D9';
     const ethereum = (window as any).ethereum;
     const provider = new ethers.providers.Web3Provider(ethereum);
 
@@ -28,31 +26,31 @@ function ContractInteraction() {
         setContract(contractInstance);
 
         const totalProposals = await contractInstance.getTotalProposals();
-        const fetchedActiveProposals: any[] = [];
-const fetchedInactiveProposals: any[] = [];
+        const fetchedActiveProposals: any[] =[] ;
+        const fetchedInactiveProposals: any[] = [];
 
-for (let i = 0; i < totalProposals; i++) {
-  const fetchedProposal = await contractInstance.proposals(i);
-  console.log(`Fetched proposal ${i}:`, fetchedProposal);
+        for (let i = 0; i < totalProposals; i++) {
+          const fetchedProposal = await contractInstance.proposals(i);
+          console.log(`Fetched proposal ${i}:`, fetchedProposal);
 
-  if (fetchedProposal.deadline > Math.floor(Date.now() / 1000)) {
-    fetchedActiveProposals.push(fetchedProposal);
-  } else {
-    fetchedInactiveProposals.push(fetchedProposal);
-  }
-}
+          if (fetchedProposal.deadline > Math.floor(Date.now() / 1000)) {
+            fetchedActiveProposals.push(fetchedProposal);
+          } else {
+            fetchedInactiveProposals.push(fetchedProposal);
+          }
+        }
 
-// Ajustar el índice de las propuestas activas
-const adjustedActiveProposals = fetchedActiveProposals.map((proposal, index) => ({
-  ...proposal,
-  id: index + fetchedInactiveProposals.length,
-}));
+        // Ajustar el índice de las propuestas activas
+        const adjustedActiveProposals = fetchedActiveProposals.map((proposal, index) => ({
+          ...proposal,
+          id: index + fetchedInactiveProposals.length,
+      }));
 
-setActiveProposals(adjustedActiveProposals);
-setInactiveProposals(fetchedInactiveProposals);
-      } catch (error) {
-        console.error('Error initializing contract:', error);
-      }
+      setActiveProposals(adjustedActiveProposals);
+      setInactiveProposals(fetchedInactiveProposals);
+          } catch (error) {
+            console.error('Error initializing contract:', error);
+          }
     };
 
     initializeContract();
